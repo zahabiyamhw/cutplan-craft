@@ -75,7 +75,7 @@ export const OutputPanel = ({
   }
 
   return (
-    <div className="h-full overflow-auto p-6 bg-muted/30">
+    <div className="h-full overflow-auto p-6 bg-muted-30">
       <Card className="inline-block min-w-full p-4">
         <div dangerouslySetInnerHTML={{ __html: svgContent }} />
       </Card>

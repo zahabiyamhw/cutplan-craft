@@ -21,7 +21,7 @@ interface PartInputProps {
 
 export const PartInput = ({ part, index, onUpdate, onRemove }: PartInputProps) => {
   return (
-    <div className="space-y-3 p-4 border rounded-md bg-card">
+    <div className="space-y-3 p-4 border rounded card">
       <div className="flex items-center justify-between">
         <Label className="font-semibold">Part {index + 1}</Label>
         <Button

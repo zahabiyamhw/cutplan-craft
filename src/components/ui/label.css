@@ -1,0 +1,14 @@
+/* Label Component Styles */
+.label-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+
+.label-text.peer-disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
