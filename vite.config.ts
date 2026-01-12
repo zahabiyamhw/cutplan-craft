@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: './',
+  base: '/cutplan-craft/', // set base for GitHub Pages deployment
   server: {
     host: "::",
     port: 8080,
