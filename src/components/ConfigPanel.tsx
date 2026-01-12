@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Plus } from "lucide-react";
 import { PartInput, Part } from "./PartInput";
+import "./ConfigPanel.css";
 
 interface ConfigPanelProps {
   parts: Part[];
@@ -60,22 +61,22 @@ export const ConfigPanel = ({
   };
 
   return (
-    <div className="h-full flex flex-col border-r">
-      <div className="p-6 border-b">
-        <h2 className="text-2xl font-bold">Cut List Optimizer</h2>
-        <p className="text-sm text-muted-foreground mt-1">
+    <div className="config-panel">
+      <div className="config-header">
+        <h2 className="config-title">UTuff - Cut Optimizer</h2>
+        <p className="config-subtitle">
           Configure your cutting parameters
         </p>
       </div>
 
-      <ScrollArea className="flex-1">
-        <div className="p-6 space-y-6">
+      <ScrollArea className="config-scroll">
+        <div className="config-content">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Sheet Dimensions</CardTitle>
+              <CardTitle className="card-title">Sheet Dimensions</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <CardContent className="sheet-dimensions">
+              <div className="sheet-grid">
                 <div>
                   <Label htmlFor="sheet-width">Width</Label>
                   <Input
@@ -109,13 +110,13 @@ export const ConfigPanel = ({
                 />
               </div>
 
-              <div className="flex items-center space-x-2">
+              <div className="allow-rotations-row">
                 <Checkbox
                   id="allow-rotations"
                   checked={allowRotations}
                   onCheckedChange={(checked) => setAllowRotations(checked as boolean)}
                 />
-                <Label htmlFor="allow-rotations" className="font-normal">
+                <Label htmlFor="allow-rotations" className="allow-rotations-label">
                   Allow rotations (overall)
                 </Label>
               </div>
@@ -124,17 +125,17 @@ export const ConfigPanel = ({
 
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-lg">Parts</CardTitle>
-                <Button onClick={addPart} size="sm" variant="outline">
-                  <Plus className="h-4 w-4 mr-1" />
+              <div className="parts-header">
+                <CardTitle className="card-title">Parts</CardTitle>
+                <Button onClick={addPart} size="sm" variant="outline" className="add-part-btn">
+                  <Plus className="add-part-icon" />
                   Add Part
                 </Button>
               </div>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="parts-content">
               {parts.length === 0 ? (
-                <p className="text-sm text-muted-foreground text-center py-4">
+                <p className="no-parts">
                   No parts added. Click "Add Part" to get started.
                 </p>
               ) : (
@@ -153,11 +154,11 @@ export const ConfigPanel = ({
         </div>
       </ScrollArea>
 
-      <div className="p-6 border-t">
+      <div className="generate-btn-row">
         <Button
           onClick={onGenerate}
           disabled={isGenerating || parts.length === 0}
-          className="w-full"
+          className="generate-btn"
           size="lg"
         >
           {isGenerating ? "Generating..." : "Generate Cutting Layout"}

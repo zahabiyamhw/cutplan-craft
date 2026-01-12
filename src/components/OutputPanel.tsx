@@ -16,12 +16,12 @@ export const OutputPanel = ({
 }: OutputPanelProps) => {
   if (pyodideError) {
     return (
-      <div className="h-full flex items-center justify-center p-6">
-        <Card className="p-6 max-w-md">
-          <h3 className="text-lg font-semibold text-destructive mb-2">
+      <div className="output-error-container">
+        <Card className="output-error-card">
+          <h3 className="output-error-title">
             Error Loading Python Engine
           </h3>
-          <p className="text-sm text-muted-foreground">{pyodideError}</p>
+          <p className="output-error-message">{pyodideError}</p>
         </Card>
       </div>
     );
@@ -29,12 +29,12 @@ export const OutputPanel = ({
 
   if (pyodideLoading) {
     return (
-      <div className="h-full flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <Loader2 className="h-12 w-12 animate-spin mx-auto text-primary" />
+      <div className="output-loading-container">
+        <div className="output-loading-content">
+          <Loader2 className="output-loader" />
           <div>
-            <p className="text-lg font-medium">Loading Python Engine...</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="output-loading-title">Loading Python Engine...</p>
+            <p className="output-loading-subtitle">
               This may take a moment on first load
             </p>
           </div>
@@ -45,12 +45,12 @@ export const OutputPanel = ({
 
   if (isGenerating) {
     return (
-      <div className="h-full flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <Loader2 className="h-12 w-12 animate-spin mx-auto text-primary" />
+      <div className="output-generating-container">
+        <div className="output-generating-content">
+          <Loader2 className="output-loader" />
           <div>
-            <p className="text-lg font-medium">Generating Layout...</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="output-generating-title">Generating Layout...</p>
+            <p className="output-generating-subtitle">
               Optimizing cuts and placement
             </p>
           </div>
@@ -61,11 +61,11 @@ export const OutputPanel = ({
 
   if (!svgContent) {
     return (
-      <div className="h-full flex items-center justify-center p-6">
-        <div className="text-center max-w-md space-y-3">
-          <div className="text-6xl mb-4">📐</div>
-          <h3 className="text-xl font-semibold">No Layout Generated</h3>
-          <p className="text-sm text-muted-foreground">
+      <div className="output-empty-container">
+        <div className="output-empty-content">
+          <div className="output-empty-icon">📐</div>
+          <h3 className="output-empty-title">No Layout Generated</h3>
+          <p className="output-empty-message">
             Configure your parts and sheet dimensions on the left, then click
             "Generate Cutting Layout" to see the optimized result here.
           </p>
@@ -75,8 +75,8 @@ export const OutputPanel = ({
   }
 
   return (
-    <div className="h-full overflow-auto p-6 bg-muted-30">
-      <Card className="inline-block min-w-full p-4">
+    <div className="output-svg-container">
+      <Card className="output-svg-card">
         <div dangerouslySetInnerHTML={{ __html: svgContent }} />
       </Card>
     </div>

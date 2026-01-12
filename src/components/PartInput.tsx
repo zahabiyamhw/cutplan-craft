@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+import "./ConfigPanel.css";
 
 export interface Part {
   name: string;
@@ -21,21 +22,21 @@ interface PartInputProps {
 
 export const PartInput = ({ part, index, onUpdate, onRemove }: PartInputProps) => {
   return (
-    <div className="space-y-3 p-4 border rounded card">
-      <div className="flex items-center justify-between">
-        <Label className="font-semibold">Part {index + 1}</Label>
+    <div className="part-input-card">
+      <div className="part-input-header">
+        <Label className="part-input-title">Part {index + 1}</Label>
         <Button
           variant="ghost"
           size="icon"
           onClick={() => onRemove(index)}
-          className="h-8 w-8"
+          className="part-input-remove-btn"
         >
-          <Trash2 className="h-4 w-4" />
+          <Trash2 className="part-input-remove-icon" />
         </Button>
       </div>
-      
-      <div className="grid grid-cols-2 gap-3">
-        <div className="col-span-2">
+
+      <div className="part-input-grid">
+        <div className="part-input-name">
           <Label htmlFor={`name-${index}`}>Name</Label>
           <Input
             id={`name-${index}`}
@@ -44,8 +45,8 @@ export const PartInput = ({ part, index, onUpdate, onRemove }: PartInputProps) =
             placeholder="Panel A"
           />
         </div>
-        
-        <div>
+
+        <div className="part-input-width">
           <Label htmlFor={`width-${index}`}>Width</Label>
           <Input
             id={`width-${index}`}
@@ -55,8 +56,8 @@ export const PartInput = ({ part, index, onUpdate, onRemove }: PartInputProps) =
             min="1"
           />
         </div>
-        
-        <div>
+
+        <div className="part-input-height">
           <Label htmlFor={`height-${index}`}>Height</Label>
           <Input
             id={`height-${index}`}
@@ -66,8 +67,8 @@ export const PartInput = ({ part, index, onUpdate, onRemove }: PartInputProps) =
             min="1"
           />
         </div>
-        
-        <div>
+
+        <div className="part-input-quantity">
           <Label htmlFor={`quantity-${index}`}>Quantity</Label>
           <Input
             id={`quantity-${index}`}
@@ -77,15 +78,15 @@ export const PartInput = ({ part, index, onUpdate, onRemove }: PartInputProps) =
             min="1"
           />
         </div>
-        
-        <div className="flex items-end">
-          <div className="flex items-center space-x-2">
+
+        <div className="part-input-rotate-row">
+          <div className="part-input-rotate">
             <Checkbox
               id={`rotate-${index}`}
               checked={part.canRotate}
               onCheckedChange={(checked) => onUpdate(index, 'canRotate', checked)}
             />
-            <Label htmlFor={`rotate-${index}`} className="text-sm font-normal">
+            <Label htmlFor={`rotate-${index}`} className="part-input-rotate-label">
               Can Rotate
             </Label>
           </div>
